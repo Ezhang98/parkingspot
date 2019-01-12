@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'center',
-		paddingTop: '60%',
+		justifyContent: 'space-evenly',
+		paddingTop: '50%',
 		alignItems: 'center',
 	},
 });
