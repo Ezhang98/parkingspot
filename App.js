@@ -38,8 +38,8 @@ class MyScene extends React.Component {
   _onForward() {
     let nextIndex = ++this.props.index;
     this.props.navigator.push({
-      component: MyScene,
-      title: 'Scene ' + nextIndex,
+      component: AnotherScene,
+      title: 'Main Scene ' + nextIndex,
       passProps: {index: nextIndex},
     });
   }
@@ -75,6 +75,43 @@ class MyScene extends React.Component {
   }
 }
 
+class AnotherScene extends React.Component{
+  static propTypes = {
+    route: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }),
+    navigator: PropTypes.object.isRequired,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this._onForward = this._onForward.bind(this);
+  }
+
+  _onForward() {
+	let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: MyScene,
+      title: 'Another Scene ' + nextIndex, 
+      passProps: {index: nextIndex},
+    });
+  }
+
+  render() {
+	  return(
+		<View style={styles.container}>
+			<View style={styles.locationInfo}>
+				<Text> Hello World! </Text>
+			</View>
+			<Button
+				onPress={this._onForward}
+				title="Tap me to go to main screen"
+			/>
+		</View>
+	  );
+  }
+}
+
 const styles = StyleSheet.create({
   	container: {
    		flex: 1,
@@ -83,9 +120,14 @@ const styles = StyleSheet.create({
   	},
 	pinButton: {
 		backgroundColor: '#FF0000',
-		position: 'relative',
-		bottom: '1%',
 
+		position: 'absolute',
+		bottom: '9%',
+		left: '45%',
+	},
+	locationInfo: {
+		flex: 1,
+		justifyContent: 'center',
 	},
 });
 
