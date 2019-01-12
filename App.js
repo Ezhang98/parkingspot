@@ -10,17 +10,7 @@ export default class App extends React.Component {
   render() {
     //const { region } = this.props
     return (
-      <View style={styles.container}>
-        <MapView
-            style={{ flex: 1 }}
-            //region={region}
-            onRegionChange={this.onRegionChange}
-            showsMyLocationButton={true}
-            showsUserLocation={true}
-            followsUserLocation={true}
-        > 
-        </MapView>
-        
+		<View style={styles.container}>  
         <NavigatorIOS
         initialRoute={{
           component: MyScene,
@@ -30,15 +20,6 @@ export default class App extends React.Component {
         style={{flex: 1}}
         />
         
-		<View style={styles.pinButton}>
-			<Button
-				onPress = {() => {
-					Alert.alert("Button has been pressed")
-				}}
-				title="Pin"
-				color="#ffffff"
-			/> 
-		</View>
       </View>
       
     );
@@ -73,13 +54,33 @@ class MyScene extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>Current Scene: {this.props.title}</Text>
-        <Button
-          onPress={this._onForward}
-          title="Tap me to load the next scene"
-        />
-      </View>
+
+	  <View style={styles.container}>
+		<MapView
+			style={{ flex: 1 }}
+			//region={region}
+			onRegionChange={this.onRegionChange}
+			showsMyLocationButton={true}
+			showsUserLocation={true}
+			followsUserLocation={true}
+		> 
+		</MapView>
+		<View>
+		<Button
+		  onPress={this._onForward}
+		  title="Tap me to load the next scene"
+		/>
+	  	</View>
+		<View style={styles.pinButton}>
+			<Button
+				onPress = {() => {
+					Alert.alert("Button has been pressed")
+				}}
+				title="Pin"
+				color="#ffffff"
+			/> 
+		</View>
+	  </View>
     );
   }
 }
