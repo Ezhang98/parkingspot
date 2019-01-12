@@ -55,7 +55,6 @@ class MyScene extends React.Component {
 			followsUserLocation={true}
 		> 
 		</MapView>
-
 		<View style={styles.pinButton}>
 			<Button
                 onPress={this._onForward}
@@ -95,13 +94,21 @@ class AnotherScene extends React.Component{
   render() {
 	  return(
 		<View style={styles.container}>
-			<View style={styles.locationInfo}>
-				<Text> Hello World! </Text>
-			</View>
-			<Button
-				onPress={this._onForward}
-				title="Tap me to go to main screen"
-			/>
+			<MapView
+				style={{ flex: 1 }}
+				onRegionChange={this.onRegionChange}
+				showsMyLocationButton={true}
+				showsUserLocation={true}
+				followsUserLocation={true}
+			> 
+			</MapView>
+				<View style={styles.locationInfo}>
+					<Text> Hello World! </Text>
+				</View>
+				<Button
+					onPress={this._onForward}
+					title="Tap me to go to main screen"
+				/>
 		</View>
 	  );
   }
@@ -115,13 +122,13 @@ const styles = StyleSheet.create({
   	},
 	pinButton: {
 		backgroundColor: '#FF0000',
-
 		position: 'relative',
 		bottom: '1%'
 	},
 	locationInfo: {
 		flex: 1,
-		justifyContent: 'center',
+		alignItems: 'center',
+		top: '20%',
 	},
 });
 
