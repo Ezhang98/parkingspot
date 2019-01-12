@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, NavigatorIOS } from 'react-native';
+import { StyleSheet, Text, View, Button, NavigatorIOS, TextInput } from 'react-native';
 import {MapView} from 'expo';
 import PropTypes from 'prop-types';
 import { GestureHandler } from 'expo';
@@ -102,13 +102,23 @@ class AnotherScene extends React.Component{
 				followsUserLocation={true}
 			> 
 			</MapView>
-				<View style={styles.locationInfo}>
-					<Text> Hello World! </Text>
-				</View>
+			<View style={styles.notes}>
+				<TextInput 
+					placeholder="NAME">
+				</TextInput>
+				<TextInput placeholder="NOTES"></TextInput>
+			<View style={styles.buttons}>
 				<Button
 					onPress={this._onForward}
-					title="Tap me to go to main screen"
+					title="Cancel"
+					color='red'
 				/>
+				<Button
+					onPress={this._onForward}
+					title="Save"
+				/>
+			</View>
+		</View>
 		</View>
 	  );
   }
@@ -125,10 +135,18 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		bottom: '1%'
 	},
-	locationInfo: {
+	notes: {
 		flex: 1,
+		paddingTop: '2%',
+		left: '2%',
+	},
+	buttons: {
+		position: 'relative',
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingTop: '60%',
 		alignItems: 'center',
-		top: '20%',
 	},
 });
 
