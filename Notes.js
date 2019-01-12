@@ -4,9 +4,36 @@ import { StyleSheet, TextInput, View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import Home from './Home';
 import Table from './Saved';
+import { AsyncStorage } from "react-native"
 
 
 export default class Notes extends React.Component{
+    
+  _retrieveData = async () => {
+    try {
+        const value = await AsyncStorage.getItem('0');
+        if (value !== null) {
+            // We have data!!
+            console.log(value);
+        }
+    } catch (error) {
+        // Error retrieving data
+    }
+  }
+  
+  _storeData = async () => {
+    try {
+        await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
+    } catch (error) {
+        // Error saving data
+    }
+  }
+  
+  saveItem(){
+      this.props.navigation.navigate('Saved');
+      
+  }
+
   render() {
 	  return(
 	  	<View style={styles.container}>
@@ -32,7 +59,7 @@ export default class Notes extends React.Component{
 					/>
 					<Button
 						onPress={() =>
-							this.props.navigation.navigate('Saved')}
+							this.saveItem.bind(this)}
 						title="Save"
 					/>
 				</View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 //import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { AsyncStorage } from "react-native"
 
 export default class Saved extends React.Component{
 
