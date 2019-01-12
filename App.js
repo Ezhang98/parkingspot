@@ -63,12 +63,7 @@ class MyScene extends React.Component {
 				color="#ffffff"
 			/> 
 		</View>
-        <Swipeable
-            renderLeftActions={this._onForward}>
-            <Text>
-            "hello"
-            </Text>
-        </Swipeable>        
+       
 	  </View>
 
     );
@@ -121,9 +116,8 @@ const styles = StyleSheet.create({
 	pinButton: {
 		backgroundColor: '#FF0000',
 
-		position: 'absolute',
-		bottom: '9%',
-		left: '45%',
+		position: 'relative',
+		bottom: '1%'
 	},
 	locationInfo: {
 		flex: 1,
