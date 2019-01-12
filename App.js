@@ -43,7 +43,7 @@ class MyScene extends React.Component {
     let nextIndex = ++this.props.index;
     this.props.navigator.push({
       component: AnotherScene,
-      title: 'Main Scene ' + nextIndex,
+      title: 'Another Scene ',
       passProps: {index: nextIndex},
     });
   }
@@ -98,7 +98,7 @@ class AnotherScene extends React.Component{
 	let nextIndex = ++this.props.index;
     this.props.navigator.push({
       component: MyScene,
-      title: 'Another Scene ' + nextIndex, 
+      title: 'Main Scene ',
       passProps: {index: nextIndex},
     });
   }
