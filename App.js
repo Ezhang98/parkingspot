@@ -2,19 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, NavigatorIOS } from 'react-native';
 import {MapView} from 'expo';
 import PropTypes from 'prop-types';
-import { Marker } from 'react-native-maps';
+//import { Marker } from 'react-native-maps';
+
+//const Marker = MapView.Marker
 
 export default class App extends React.Component {
   render() {
+    //const { region } = this.props
     return (
       <View style={styles.container}>
         <MapView
             style={{ flex: 1 }}
+            //region={region}
             onRegionChange={this.onRegionChange}
             showsMyLocationButton={true}
             showsUserLocation={true}
             followsUserLocation={true}
-        />
+        > 
+        </MapView>
         
         <NavigatorIOS
         initialRoute={{
@@ -38,7 +43,11 @@ export default class App extends React.Component {
       
     );
   }
+  
+
 }
+
+
 
 class MyScene extends React.Component {
   static propTypes = {
