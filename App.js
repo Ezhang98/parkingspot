@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, NavigatorIOS } from 'react-native';
 import {MapView} from 'expo';
+import PropTypes from 'prop-types';
+import { Marker } from 'react-native-maps';
 
 export default class App extends React.Component {
   render() {
@@ -8,13 +10,21 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <MapView
             style={{ flex: 1 }}
-            initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            }}
+            onRegionChange={this.onRegionChange}
+            showsMyLocationButton={true}
+            showsUserLocation={true}
+            followsUserLocation={true}
         />
+        
+        <NavigatorIOS
+        initialRoute={{
+          component: MyScene,
+          title: 'My Initial Scene',
+          passProps: {index: 1},
+        }}
+        style={{flex: 1}}
+        />
+        
 		<View style={styles.pinButton}>
 			<Button
 				onPress = {() => {
@@ -26,6 +36,41 @@ export default class App extends React.Component {
 		</View>
       </View>
       
+    );
+  }
+}
+
+class MyScene extends React.Component {
+  static propTypes = {
+    route: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }),
+    navigator: PropTypes.object.isRequired,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this._onForward = this._onForward.bind(this);
+  }
+
+  _onForward() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: MyScene,
+      title: 'Scene ' + nextIndex,
+      passProps: {index: nextIndex},
+    });
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>Current Scene: {this.props.title}</Text>
+        <Button
+          onPress={this._onForward}
+          title="Tap me to load the next scene"
+        />
+      </View>
     );
   }
 }
