@@ -2,26 +2,22 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, NavigatorIOS } from 'react-native';
 import {MapView} from 'expo';
 import PropTypes from 'prop-types';
-//import { Marker } from 'react-native-maps';
-
-//const Marker = MapView.Marker
+import { GestureHandler } from 'expo';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 export default class App extends React.Component {
   render() {
-    //const { region } = this.props
     return (
 		<View style={styles.container}>  
-        <NavigatorIOS
-        initialRoute={{
-          component: MyScene,
-          title: 'My Initial Scene',
-          passProps: {index: 1},
-        }}
-        style={{flex: 1}}
-        />
-        
-      </View>
-      
+            <NavigatorIOS
+                initialRoute={{
+                    component: MyScene,
+                    title: 'My Location',
+                    passProps: {index: 1},
+                }}
+                style={{flex: 1}}
+            />
+        </View>
     );
   }
 }
@@ -50,33 +46,26 @@ class MyScene extends React.Component {
 
   render() {
     return (
-
 	  <View style={styles.container}>
 		<MapView
 			style={{ flex: 1 }}
-			//region={region}
 			onRegionChange={this.onRegionChange}
 			showsMyLocationButton={true}
 			showsUserLocation={true}
 			followsUserLocation={true}
 		> 
 		</MapView>
-		<View>
-		<Button
-		  onPress={this._onForward}
-		  title="Tap me to load the next scene"
-		/>
-	  	</View>
+
 		<View style={styles.pinButton}>
 			<Button
-				onPress = {() => {
-					Alert.alert("Button has been pressed")
-				}}
-				title="Pin"
+                onPress={this._onForward}
+				title="Pin Location"
 				color="#ffffff"
 			/> 
 		</View>
+       
 	  </View>
+
     );
   }
 }
@@ -126,9 +115,9 @@ const styles = StyleSheet.create({
   	},
 	pinButton: {
 		backgroundColor: '#FF0000',
-		position: 'absolute',
-		bottom: '9%',
-		left: '45%',
+
+		position: 'relative',
+		bottom: '1%'
 	},
 	locationInfo: {
 		flex: 1,
