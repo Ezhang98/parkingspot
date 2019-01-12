@@ -4,6 +4,7 @@ import {MapView} from 'expo';
 import PropTypes from 'prop-types';
 import { GestureHandler } from 'expo';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { AsyncStorage } from "react-native"
 
 export default class App extends React.Component {
   render() {
@@ -33,6 +34,31 @@ class MyScene extends React.Component {
   constructor(props, context) {
     super(props, context);
     this._onForward = this._onForward.bind(this);
+    this.state = {
+        myKey: null
+    }
+  }
+
+  async getKey() {
+    try {
+      const value = await AsyncStorage.getItem('1');
+      this.setState({myKey: value});
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+  }
+
+  async saveKey(value) {
+    try {
+      await AsyncStorage.setItem('1', value);
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
+
+
+  onRegionChange(region) {
+    console.log("Region is ", region);
   }
 
   _onForward() {
@@ -53,12 +79,20 @@ class MyScene extends React.Component {
 			showsMyLocationButton={true}
 			showsUserLocation={true}
 			followsUserLocation={true}
+            value={this.onRegionChange}
 		> 
 		</MapView>
 		<View style={styles.pinButton}>
 			<Button
-                onPress={this._onForward}
+                onPress={(value) => this.saveKey(value)}
 				title="Pin Location"
+				color="#ffffff"
+			/> 
+		</View>
+        <View style={styles.pinButton}>
+			<Button
+                onPress={console.log("Region is ", this.getKey.bind(this))}
+				title="print"
 				color="#ffffff"
 			/> 
 		</View>
