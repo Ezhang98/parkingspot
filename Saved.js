@@ -124,8 +124,12 @@ export default class Notes extends React.Component{
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-    text: { margin: 6 },
-    row: { flexDirection: 'row', backgroundColor: '#FFF1C1' },
+	text: { 
+		padding: 5,
+		flexDirection: 'row',
+		flex: 1,
+		alignSelf: 'stretch',
+	},
 	buttons: {
 		flex: 1,
 		flexDirection: 'row',
@@ -138,7 +142,8 @@ const styles = StyleSheet.create({
 		top: '15%',
 	},
 	row: {
-		justifyContent: 'space-evenly',
+		flex: 1,
+		justifyContent: 'center',
 		flexWrap: 'nowrap',
 		flexDirection: 'row',
 	},
