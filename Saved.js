@@ -11,16 +11,24 @@ export default class Notes extends React.Component{
         super(props);
         this.state = {
           tableHead: ['Name', 'Latitude', 'Longitude', 'Notes'],
-          tableData: [
-            ['1', '2', '3', '4'],
-            ['a', 'b', 'c', 'd'],
-            ['1', '2', '3', '4'],
-            ['a', 'b', 'c', 'd']
-          ]
+          tableData: []
         }
-      }
+    }
 
-    render() {
+    getSome  = () => {
+      storage.keys().then(function(value) {
+        
+        tableData = value;
+        console.log(tableData);
+        // expected output: "foo"
+      });
+
+
+
+      
+    }
+
+    render() {/*
         const state = this.state;
         const element = (data, index) => (
 
@@ -28,8 +36,42 @@ export default class Notes extends React.Component{
               <Text style={styles.btnText}>button</Text>
             </View>
 
-        );
+        );*/
         return (
+          
+          <View style={styles.buttons}>
+					<Button
+						onPress={() =>
+							this.props.navigation.navigate('Home')}
+						title="Home"
+						color='red'
+					/>
+					<Button
+						onPress={() => {
+							this.getSome();
+							this.props.navigation.navigate('Saved');
+						}}
+						title="Save"
+					/>
+				</View>/*
+        <View style={styles.container}>
+        <Text style={styles.header}>Locations</Text>
+        <FlatList
+          data={tableData}
+          renderItem={
+            ({ item, index }) =>
+              <Row highScore={item} index={index} key={index} />
+          }
+          keyExtractor={(item, index) => index.toString()}
+          ListEmptyComponent={() =>
+            <Text style={{ textAlign: 'center' }}>
+              There are no Locations yet!
+            </Text>
+          }
+          ListHeaderComponent={() => tableData.length > 0 && <TableHeader />}
+        />
+      </View>
+          /*
             <View style={styles.container}>
             <Table borderStyle={{borderColor: 'transparent'}}>
               <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
@@ -53,7 +95,7 @@ export default class Notes extends React.Component{
 					title="Clear All"
 				/>
 			</View>
-          </View>
+          </View>*/
         )
     }
 }
