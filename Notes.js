@@ -3,7 +3,7 @@ import { MapView } from 'expo';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import Home from './Home';
-import store from 'react-native-simple-store';
+import storage from 'react-native-modest-storage';
 
 
 export default class Notes extends React.Component{
@@ -22,17 +22,22 @@ export default class Notes extends React.Component{
 		//});
 	}
 
-	onSave(){
-
-		store.update('testKey', { testAttribute: this.state.changes});
-
-		store.get('testKey')
-			.then((res) =>
-				console.log(res.testAttribute));
-
+	onSave = () => {
+		
 		this.setState({
 			changes: "yea",
+		}, () => {
+			storage.update('testKey', { testAttribute: this.state.changes});
 		});
+		console.log('update key');
+
+		storage.get('testKey').then( (res) => console.log(res.testAttribute));
+	}
+
+	testPrint = () => {
+		console.log('print key');
+		storage.clear();
+		console.log('keys cleared');
 	}
 
   render() {
@@ -47,9 +52,7 @@ export default class Notes extends React.Component{
 			>
 			</MapView>
 			<View style={styles.notes}>
-				<TextInput
-						placeholder="NAME">
-				</TextInput>
+				<TextInput placeholder="NAME"></TextInput>
 				<TextInput placeholder="NOTES"></TextInput>
 				<View style={styles.buttons}>
 					<Button
@@ -61,6 +64,7 @@ export default class Notes extends React.Component{
 					<Button
 						onPress={() => {
 							this.onSave();
+							this.testPrint();
 							this.props.navigation.navigate('Home');
 						}}
 						title="Save"
