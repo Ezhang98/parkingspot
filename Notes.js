@@ -11,7 +11,7 @@ export default class Notes extends React.Component{
 		super(props);
 
 		this.state = {
-			storageLabel:  null,
+			storageLabel: "default",
 			regionLong: null,
 			regionLat: null,
 			textInput: "N/A",
