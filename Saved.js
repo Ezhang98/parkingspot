@@ -10,7 +10,7 @@ export default class Notes extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
+          tableHead: ['Name', 'Latitude', 'Longitude', 'Notes'],
           tableData: [
             ['1', '2', '3', '4'],
             ['a', 'b', 'c', 'd'],
