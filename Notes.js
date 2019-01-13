@@ -8,8 +8,31 @@ import store from 'react-native-simple-store';
 
 export default class Notes extends React.Component{
 
+	constructor(props){
+		super(props);
+
+		this.state = {
+			changes: 'naw',
+		};
+	}
+
+	onRegionChange(region) {
+		//this.setState({
+		//	changes: "yea",
+		//});
+	}
+
 	onSave(){
-				
+
+		store.update('testKey', { testAttribute: this.state.changes});
+
+		store.get('testKey')
+			.then((res) =>
+				console.log(res.testAttribute));
+
+		this.setState({
+			changes: "yea",
+		});
 	}
 
   render() {
