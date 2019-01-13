@@ -6,9 +6,22 @@ import storage from 'react-native-modest-storage';
 
 
 export default class Notes extends React.Component{
+
+	
+
+	func = () => {
+		storage.get('default').then();
+	}
+
     render() {
         return(
             <View style={styles.container}>
+				<Button
+					onPress={() => {
+						this.func();
+					}}
+					title="click me"
+				/>
             </View>
         )
     }
