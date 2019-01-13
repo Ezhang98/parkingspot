@@ -7,25 +7,25 @@ import storage from 'react-native-modest-storage';
 
 
 export default class Notes extends React.Component{
-
 	constructor(props){
 		super(props);
 
+		this.state = {
+			storageLabel:  null,
+			regionLong: null,
+			regionLat: null,
+			textInput: "N/A",
+		}
 	}
 
-	onRegionChange(region) {
-		storage.update('testKey', {
-			long: region.longitude,
-			lat: region.latitude}
-			);
-	}
+	onSave  = () => {
+		storage.update(this.state.storageLabel, {
+			long: this.state.regionLong,
+			lat: this.state.regionLat,
+			noteText: this.state.textInput,
+		});
 
-	testPrint = () => {
-		storage.get('testKey')
-		.then((res) => 
-			console.log(res.lat + " " + res.long));
-		console.log("clear");
-		storage.clear();
+		console.log("key: " + this.state.storageLabel + " " + this.state.regionLong + " " + this.state.regionLat + " | " + this.state.textInput);
 	}
 
   render() {
@@ -33,15 +33,36 @@ export default class Notes extends React.Component{
 	  	<View style={styles.container}>
 			<MapView
 				style={{ flex: 1 }}
-				onRegionChange={this.onRegionChange}
+				onRegionChange = {(region) => {
+					this.setState({
+						regionLong: region.longitude,
+						regionLat: region.latitude,
+					});
+				}}
 				showsMyLocationButton={true}
 				showsUserLocation={true}
 				followsUserLocation={true}
 			>
 			</MapView>
 			<View style={styles.notes}>
-				<TextInput placeholder="NAME"></TextInput>
-				<TextInput placeholder="NOTES"></TextInput>
+				<TextInput 
+					style = {{flex: 1}}
+					onChangeText= {(text) =>{
+						this.setState({
+							storageLabel: text
+						});
+					}}
+					placeholder="NAME">
+				</TextInput>
+
+				<TextInput 
+					onChangeText= {(text) => {
+						this.setState({
+							textInput: text
+						});
+					}}
+					placeholder="NOTES">
+				</TextInput>
 				<View style={styles.buttons}>
 					<Button
 						onPress={() =>
@@ -51,7 +72,7 @@ export default class Notes extends React.Component{
 					/>
 					<Button
 						onPress={() => {
-							this.testPrint();
+							this.onSave();
 							this.props.navigation.navigate('Saved');
 						}}
 						title="Save"
@@ -79,7 +100,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-evenly',
-		paddingTop: '50%',
+		paddingTop: '40%',
 		alignItems: 'center',
 	},
 });
