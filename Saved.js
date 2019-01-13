@@ -45,6 +45,14 @@ export default class Notes extends React.Component{
                 ))
               }
             </Table>
+			<View style={styles.clearAllButton}>
+				<Button
+					onPress = {() => {
+						storage.clear();
+					}}
+					title="Clear All"
+				/>
+			</View>
           </View>
         )
     }
