@@ -1,4 +1,5 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 class.Component.route	/Users/colinpeppler/SBHacksV/parkingspot/App.js	/^    route: PropTypes.shape({$/;"	p	language:JavaScript
 export.Component.route	/Users/colinpeppler/SBHacksV/parkingspot/Home.js	/^		route: PropTypes.shape({$/;"	p	language:JavaScript
-state.changes	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			changes: 'naw',$/;"	p	language:JavaScript
+state.latitude	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			latitude: 69,$/;"	p	language:JavaScript
+state.longitude	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			longitude: 1337,$/;"	p	language:JavaScript

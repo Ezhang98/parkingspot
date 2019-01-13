@@ -11,44 +11,32 @@ export default class Notes extends React.Component{
 	constructor(props){
 		super(props);
 
-		this.state = {
-			changes: 'naw',
-		};
 	}
 
 	onRegionChange(region) {
-		//this.setState({
-		//	changes: "yea",
-		//});
-	}
-
-	onSave = () => {
-		
-		this.setState({
-			changes: "yea",
-		}, () => {
-			storage.update('testKey', { testAttribute: this.state.changes});
-		});
-		console.log('update key');
-
-		storage.get('testKey').then( (res) => console.log(res.testAttribute));
+		storage.update('testKey', {
+			long: region.longitude,
+			lat: region.latitude}
+			);
 	}
 
 	testPrint = () => {
-		console.log('print key');
+		storage.get('testKey')
+		.then((res) => 
+			console.log(res.lat + " " + res.long));
+		console.log("clear");
 		storage.clear();
-		console.log('keys cleared');
 	}
 
   render() {
 	  return(
 	  	<View style={styles.container}>
 			<MapView
-					style={{ flex: 1 }}
-					onRegionChange={this.onRegionChange}
-					showsMyLocationButton={true}
-					showsUserLocation={true}
-					followsUserLocation={true}
+				style={{ flex: 1 }}
+				onRegionChange={this.onRegionChange}
+				showsMyLocationButton={true}
+				showsUserLocation={true}
+				followsUserLocation={true}
 			>
 			</MapView>
 			<View style={styles.notes}>
@@ -63,7 +51,6 @@ export default class Notes extends React.Component{
 					/>
 					<Button
 						onPress={() => {
-							this.onSave();
 							this.testPrint();
 							this.props.navigation.navigate('Home');
 						}}
