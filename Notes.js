@@ -34,6 +34,37 @@ export default class Notes extends React.Component{
       
   }
 
+	constructor(props){
+		super(props);
+
+		this.state = {
+			changes: 'naw',
+		};
+	}
+
+	onRegionChange(region) {
+		//this.setState({
+		//	changes: "yea",
+		//});
+	}
+
+	onSave = () => {
+		
+		this.setState({
+			changes: "yea",
+		}, () => {
+			storage.update('testKey', { testAttribute: this.state.changes});
+		});
+		console.log('update key');
+
+		storage.get('testKey').then( (res) => console.log(res.testAttribute));
+	}
+
+	testPrint = () => {
+		console.log('print key');
+		storage.clear();
+		console.log('keys cleared');
+
   render() {
 	  return(
 	  	<View style={styles.container}>
@@ -46,9 +77,7 @@ export default class Notes extends React.Component{
 			>
 			</MapView>
 			<View style={styles.notes}>
-				<TextInput
-						placeholder="NAME">
-				</TextInput>
+				<TextInput placeholder="NAME"></TextInput>
 				<TextInput placeholder="NOTES"></TextInput>
 				<View style={styles.buttons}>
 					<Button
@@ -58,8 +87,11 @@ export default class Notes extends React.Component{
 						color='red'
 					/>
 					<Button
-						onPress={() =>
-							this.saveItem.bind(this)}
+						onPress={() => {
+							this.onSave();
+							this.testPrint();
+							this.props.navigation.navigate('Home');
+						}}
 						title="Save"
 					/>
 				</View>
