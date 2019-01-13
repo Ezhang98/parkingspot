@@ -1,5 +1,8 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 class.Component.route	/Users/colinpeppler/SBHacksV/parkingspot/App.js	/^    route: PropTypes.shape({$/;"	p	language:JavaScript
 export.Component.route	/Users/colinpeppler/SBHacksV/parkingspot/Home.js	/^		route: PropTypes.shape({$/;"	p	language:JavaScript
-state.latitude	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			latitude: 69,$/;"	p	language:JavaScript
-state.longitude	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			longitude: 1337,$/;"	p	language:JavaScript
+state.regionLat	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			regionLat: null,$/;"	p	language:JavaScript
+state.regionLong	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			regionLong: null,$/;"	p	language:JavaScript
+state.storageLabel	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			storageLabel: "default",$/;"	p	language:JavaScript
+state.tableHead	/Users/colinpeppler/SBHacksV/parkingspot/Saved.js	/^			tableHead: ['Name', 'Latitude', 'Longitude', 'Notes'],$/;"	p	language:JavaScript
+state.textInput	/Users/colinpeppler/SBHacksV/parkingspot/Notes.js	/^			textInput: "N\/A",$/;"	p	language:JavaScript

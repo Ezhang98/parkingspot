@@ -24,8 +24,6 @@ export default class Notes extends React.Component{
 			lat: this.state.regionLat,
 			noteText: this.state.textInput,
 		});
-
-		console.log("key: " + this.state.storageLabel + " " + this.state.regionLong + " " + this.state.regionLat + " | " + this.state.textInput);
 	}
 
   render() {
@@ -102,5 +100,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		paddingTop: '40%',
 		alignItems: 'center',
+		bottom: '5%',
 	},
 });
