@@ -3,9 +3,15 @@ import { MapView } from 'expo';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import Home from './Home';
+import store from 'react-native-simple-store';
 
 
 export default class Notes extends React.Component{
+
+	onSave(){
+				
+	}
+
   render() {
 	  return(
 	  	<View style={styles.container}>
@@ -30,8 +36,10 @@ export default class Notes extends React.Component{
 						color='red'
 					/>
 					<Button
-						onPress={() =>
-							this.props.navigation.navigate('Home')}
+						onPress={() => {
+							this.onSave();
+							this.props.navigation.navigate('Home');
+						}}
 						title="Save"
 					/>
 				</View>
