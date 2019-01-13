@@ -52,7 +52,7 @@ export default class Notes extends React.Component{
 					<Button
 						onPress={() => {
 							this.testPrint();
-							this.props.navigation.navigate('Home');
+							this.props.navigation.navigate('Saved');
 						}}
 						title="Save"
 					/>
