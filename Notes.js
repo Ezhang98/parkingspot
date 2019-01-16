@@ -1,8 +1,6 @@
 import React from 'React';
 import { MapView } from 'expo';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
-import PropTypes from 'prop-types';
-import Home from './Home';
 import storage from 'react-native-modest-storage';
 
 
@@ -54,6 +52,7 @@ export default class Notes extends React.Component{
 				</TextInput>
 
 				<TextInput 
+					style = {{flex: 1}}
 					onChangeText= {(text) => {
 						this.setState({
 							textInput: text

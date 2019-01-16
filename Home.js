@@ -1,8 +1,6 @@
 import React from 'react';
 import { MapView } from 'expo';
 import { StyleSheet, View, Button } from 'react-native';
-import PropTypes from 'prop-types';
-import Notes from './Notes';
 
 export default class Home extends React.Component {
 	render() {

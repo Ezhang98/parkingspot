@@ -67,15 +67,7 @@ export default class Notes extends React.Component{
 
 	}
 
-    render() {/*
-        const state = this.state;
-        const element = (data, index) => (
-
-            <View style={styles.btn}>
-              <Text style={styles.btnText}>button</Text>
-            </View>
-
-        );*/
+    render() {
 		
 		if(!this.state.loading){
 			return <Text> LOADING... </Text> ;	
@@ -111,10 +103,12 @@ export default class Notes extends React.Component{
 						color='black'
 					/>
 					<Button
-						onPress={() => storage.clear() }
+						onPress={() => {
+							storage.clear();
+						}}
 						title="CLEAR"
 						color='red'
-						/>
+					/>
 				</View>
 			</View>
 			)
